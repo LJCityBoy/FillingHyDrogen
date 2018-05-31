@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>加氢站</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mystyle.css" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/mui.min.js "></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+		<style>
+			#map {
+				width: 100%;
+				height: 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="pullrefresh" class="mui-content mui-scroll-wrapper">
+			<div class="mui-scroll">
+				<ul class="mui-table-view mui-table-view-chevron">
+					<li class="mui-table-view-cell mui-media cell-padding">
+						<button class="mui-pull-right btn btn-default btn-list" type="button" name="0">
+							<span class="mui-icon mui-icon-paperplane"></span>
+							<div class="mui-media-body">路线规划</div>
+						</button>
+						<button class="mui-pull-right btn btn-default btn-list" type="button" name="1">
+							<span class="mui-icon mui-icon-phone"></span>
+							<div class="mui-media-body">电话</div>
+						</button>
+						<div class="mui-media-body">
+							南方消防加氢合站
+							<p class="mui-ellipsis list-subdiv">地址：南方消防电力大厦</p>
+						</div>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<script type="text/javascript ">
+			//添加双击监听
+			mui.init({
+				pullRefresh: {
+					container: '#pullrefresh',
+					down: {
+						callback: pulldownRefresh
+					},
+					up: {
+						contentrefresh: '正在加载...',
+						callback: pullupRefresh
+					}
+				}
+			});
+			//给按钮绑定点击事件方法1
+			mui('.mui-content').on('tap', 'button', function() {
+
+				//alert(this.name); 
+				if(this.name == 0) {
+//					mui.toast('路径规划');
+					mui.openWindow({
+					url : "../views/PathPlanning.html",
+					id : "PathPlanning.html",
+					styles: {
+						top: '0px',
+						bottom: '0px',
+					}
+				});
+				} else {
+//					mui.toast('打电话');
+					plus.device.dial("13516645183", true);
+				}
+
+			})
+			//给按钮绑定点击事件方法2
+			//			document.getElementById("phone").addEventListener("tap", function() {
+			//				plus.device.vibrate();
+			//				plus.device.dial("13516645183", true);
+			//			});
+
+			mui.plusReady(function() {
+
+			});
+
+			/**
+			 * 下拉刷新具体业务实现
+			 */
+			function pulldownRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPulldownToRefresh();
+				}, 1500);
+			}
+			var count = 0;
+			/**
+			 * 上拉加载具体业务实现
+			 */
+			function pullupRefresh() {
+				setTimeout(function() {
+					mui('#pullrefresh').pullRefresh().endPullupToRefresh();
+				}, 1500);
+			}
+		</script>
+	</body>
+
+</html>

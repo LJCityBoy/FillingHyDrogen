@@ -1,0 +1,65 @@
+{
+  "views/HydrogenStation.html": {
+    "href": "views/HydrogenStation.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "views/HydrogenStationList.html"
+    ],
+    "refer": [
+      "views/HydrogenStationList.html"
+    ],
+    "priority": 0
+  },
+  "views/FindHydrogenStation.html": {
+    "href": "views/FindHydrogenStation.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js",
+      "views/searchView.html"
+    ],
+    "refer": [
+      "views/searchView.html"
+    ],
+    "priority": 0
+  },
+  "views/AppointmentHydrogen.html": {
+    "href": "views/AppointmentHydrogen.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [
+      "views/AppointmentHydrogen-sub.html"
+    ],
+    "priority": 0
+  },
+  "views/FatigueDriving.html": {
+    "href": "views/FatigueDriving.html",
+    "resources": [
+      "css/mui.min.css",
+      "js/mui.min.js"
+    ],
+    "refer": [],
+    "priority": 0
+  },
+  "index.html": {
+    "href": "index.html",
+    "resources": [
+      "js/mui.min.js",
+      "css/mui.min.css"
+    ],
+    "refer": [
+      "views/HydrogenStation.html",
+      "views/FindHydrogenStation.html",
+      "views/AppointmentHydrogen.html",
+      "views/FatigueDriving.html"
+    ],
+    "priority": 0
+  },
+  "views/HydrogenStationList.html": {
+    "refer": [
+      "views/PathPlanning.html"
+    ]
+  }
+}

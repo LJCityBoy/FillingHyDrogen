@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>查找氢站</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mystyle.css" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headercolor">
+			<h1 class="mui-title">加氢站查找</h1>
+		</header>
+
+		<div class="mui-content">
+			<div id="search-map">地图加载中...</div>
+		</div>
+		<script type="text/javascript">
+			mui.init()
+			var ws = null;
+			var bdmap = null;
+			mui.plusReady(function() {
+				ws = plus.webview.currentWebview();
+				$("#search-map").css("width", $(window).width());
+				$("#search-map").css("height", $(window).height() - $("header").height() - 51);
+				// 获取窗口对象
+				setTimeout(function() {
+					bdmap = new plus.maps.Map("search-map");
+					//展示用户位置
+					var wsub = plus.webview.create('searchView.html', 'searchView', {
+						top: "80px",
+						height: '45px',
+						position: 'absolute',
+						scrollIndicator: 'none',
+						background: 'currentcolor'
+					});
+					ws.append(wsub);
+				}, 1500);
+			});
+
+			/*
+			 * 回到用户位置
+			 */
+			function showUseLocation() {
+				bdmap.showUserLocation(true);
+				bdmap.getUserLocation(function(state, pos) {
+					if(0 == state) {
+						bdmap.setCenter(pos);
+						bdmap.setZoom(16);
+					}
+				});
+			}
+
+			/*
+			 * 搜索
+			 * 监听点击搜索事件
+			 */
+			window.addEventListener("searchStation", function(e) {
+				alert(e.data);
+			});
+		</script>
+	</body>
+
+</html>

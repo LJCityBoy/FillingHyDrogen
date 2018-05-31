@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+		<meta name="HandheldFriendly" content="true" />
+		<meta name="MobileOptimized" content="320" />
+		<title>加氢站</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mystyle.css" />
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<script src="../js/mui.min.js "></script>
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js"></script>
+		<style>
+			#map {
+				width: 100%;
+				height: 200px;
+			}
+		</style>
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav mui-bar-transparent headercolor" data-top='290' data-offset='150' data-duration='16' data-scrollby=".mui-content">
+			<h1 class="mui-title ">加氢站</h1>
+		</header>
+		<div class="mui-content">
+			<div id="map">地图加载中...</div>
+			<!--区域按钮-->
+			<div class="btn-area">
+				<button type="button" class="btn btn-default btn-radio">禅城</button>
+				<button type="button" class="btn btn-default btn-radio">南海</button>
+				<button type="button" class="btn btn-default btn-radio">三水</button>
+				<button type="button" class="btn btn-default btn-radio">高明</button>
+				<button type="button" class="btn btn-default btn-radio">顺德</button>
+			</div>
+			
+		</div>
+
+		<script type="text/javascript ">
+			//添加双击监听
+			mui.init({
+				gestureConfig: {
+					doubletap: true
+				},
+				subpages: [{
+					url: 'HydrogenStationList.html',
+					id: 'HydrogenStationList.html',
+					styles: {
+						top: '310px',
+						bottom: '0px',
+					}
+				}]
+			});
+			btnSet();
+			var ws = null;
+			var wo = null;
+			var bdmap = null;
+				pcenter = null;
+			mui.plusReady(function() {
+				ws = plus.webview.currentWebview();
+				wo = ws.opener();
+				// 获取窗口对象
+				pcenter = new plus.maps.Point(116.3975, 39.9074);
+				setTimeout(function() {
+					bdmap = new plus.maps.Map("map");
+					//展示用户位置
+					showUseLocation();
+				}, 300);
+//				ws.show("pop-in");//pop动画显示页面 如果以动画形式打开，会出现类似卡顿的现象
+				ws.show();
+			});
+
+			/*
+			 * 回到用户位置
+			 */
+			function showUseLocation() {
+				bdmap.showUserLocation(true);
+				bdmap.getUserLocation(function(state, pos) {
+					if(0 == state) {
+						bdmap.setCenter(pos);
+						bdmap.setZoom(16);
+					}
+				});
+
+			}
+			/*
+			 * 动态计算按钮位置
+			 */
+			function btnSet() {
+				var b_w = ($(window).width() - 30) * 0.2;
+				$(".btn-radio").css('width', b_w + "px");
+			}
+
+			var contentWebview = null;
+			document.querySelector('header').addEventListener('doubletap', function() {
+				if(contentWebview == null) {
+					contentWebview = plus.webview.currentWebview().children()[0];
+				}
+				contentWebview.evalJS("mui('#pullrefresh').pullRefresh().scrollTo(0,0,100)");
+			});
+		</script>
+	</body>
+
+</html>

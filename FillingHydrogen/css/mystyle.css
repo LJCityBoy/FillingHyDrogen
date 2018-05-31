@@ -1,0 +1,109 @@
+/*
+ * 底部选项卡设置
+ */
+.mui-active{
+			color: #2AC845 !important;
+			
+		}
+.mui-bar-tab {
+			background-color: rgb(244,226,8) !important;
+		}
+		
+.mui-bar-tab .mui-tab-item{
+	color: #0062CC;
+}
+.mui-bar .mui-title{
+	margin-top: 20px !important;
+}
+.mui-bar {
+	height: 64px !important; 
+}
+.mui-bar-nav~.mui-content{
+	padding-top: 64px !important;
+}
+/*
+ * 导航条的颜色
+ */
+.headercolor{background-color: rgba(42,200,69,0.9);}
+/*.headercolor{background-color: #2AC845}*/
+.headercolor h1{color: white;}
+
+/*
+ * 导航条返回按钮颜色
+ */
+.back-btn{
+	color: white !important;
+	padding-top: 30px !important;
+}
+
+
+/*
+ * 区域圆角按钮,间距
+ */
+.btn-area{
+	padding: 3px 3px 5px 7px;
+	background-color: white;
+}
+.btn-radio{
+	border-radius: 50px !important;
+	padding: 0px;
+}
+
+/*
+ * 加氢站列表
+ */
+
+.list-subdiv{
+	margin-top: 10px;
+	color: #2AC845;
+}
+.btn-list{
+	width: 60px;
+	padding: 6px 0px !important;
+	margin-left: 5px;
+}
+.btn-list div{
+	font-size: 12px;
+}
+.cell-padding{
+	padding-right: 5px !important;
+}
+
+/*
+ * 预约加氢
+ */
+.appointment-btn{
+	width: 120px; 
+	display: table;
+	margin-left: auto;
+	margin-right: auto; 
+	margin-top: 140px; 
+	background-color: #2AC845;
+	color: white;
+	height: 40px;
+	border-radius: 20px;
+	border: none;
+}
+/*
+ * 路径规划
+ */
+.plath-adress{
+	background-color: white;
+	padding-top: 5px;
+}
+.plath-adress p{
+	line-height: 35px;
+}
+.btn-cir{
+	width: 29%;
+	height: 40px;
+	margin-left: 14%;
+	margin-top: 5px;
+	background-color: #2AC845;
+	color: white;
+	border-radius: 20px !important;
+	border: 0px;
+}
+.plath-btdiv{
+	/*background-color: gainsboro;*/
+}

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title>预约加氢</title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="../css/mystyle.css" />
+		<script src="../js/mui.min.js"></script>
+		<link rel="stylesheet" href="../css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/mystyle.css" />
+		<script type="text/javascript" src="../js/jquery-3.3.1.min.js" ></script>
+
+	</head>
+
+	<body>
+		<header class="mui-bar mui-bar-nav headercolor">
+			<h1 class="mui-title">预约加氢</h1>
+		</header>
+		<div class="mui-content">
+			<div class="container" style="background-color: white;">
+				<form role="form">
+				<div class="form-group">
+					<br />
+					<label for="name">基本数据填写</label>
+					<input name="name" type="text" class="form-control" placeholder="姓名">
+					<input name="carId" type="text" class="form-control" placeholder="车辆">
+					<input name="phoneN" type="tel" class="form-control" placeholder="手机">
+					<button id="submt" type="button" class="mui-btn appointment-btn">确认加氢</button>
+				</div>
+			</form>
+			</div>
+		</div>
+		<script type="text/javascript">
+			mui.init()
+			document.getElementById("submt").addEventListener("tap",function(){
+				mui.openWindow({
+					url : "../views/AppointmentHydrogen-sub.html",
+					id : "AppointmentHydrogen-sub.html",
+					styles: {
+						top: '0px',
+						bottom: '51px',
+					}
+				})
+			})
+		</script>
+	</body>
+
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<script src="js/mui.min.js"></script>
+		<link href="css/mui.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="css/mystyle.css" />
+	</head>
+	<style type="text/css">
+		.mui-bar {
+			height: 51px !important; 
+		}
+	</style>
+
+	<body>
+		<nav class="mui-bar mui-bar-tab" id="bar">
+			<a class="mui-tab-item mui-active" data-id="main" href="views/HydrogenStation.html">
+				<span class="mui-icon mui-icon-flag"></span>
+				<span class="mui-tab-label">加氢站</span>
+			</a>
+			<a class="mui-tab-item " data-id="find" href="views/FindHydrogenStation.html">
+				<span class="mui-icon mui-icon-paperplane"></span>
+				<span class="mui-tab-label">查找加氢站</span>
+			</a>
+			<a class="mui-tab-item" data-id="appointment" href="views/AppointmentHydrogen.html">
+				<span class="mui-icon mui-icon-compose"></span>
+				<span class="mui-tab-label">预约加氢</span>
+			</a>
+			<a class="mui-tab-item" data-id="fating" href="views/FatigueDriving.html">
+				<span class="mui-icon mui-icon-person"></span>
+				<span class="mui-tab-label">疲劳驾驶</span>
+			</a>
+		</nav>
+		<script type="text/javascript" charset="utf-8">
+			mui.init();
+			mui.plusReady(function() {
+
+				var self = plus.webview.currentWebview();
+				var current = '';
+				var styles = {
+					top: '0px',
+					bottom: '51px'
+				};
+				var tabsConfig = {
+					main: {
+						url: 'views/HydrogenStation.html',
+						id : "HydrogenStation",
+						styles: styles
+						
+					},
+					find: {
+						url: 'views/FindHydrogenStation.html',
+						id : "FindHydrogenStation",
+						styles: styles
+						
+					},
+					appointment: {
+						url: 'views/AppointmentHydrogen.html',
+						id : "AppointmentHydrogen",
+						styles: styles
+					},
+					fating: {
+						url: 'views/FatigueDriving.html',
+						id : "FatigueDriving",
+						styles: styles
+					}
+				};
+				var tabs = {};
+				for(id in tabsConfig) {
+					tabs[id] = plus.webview.create(tabsConfig[id].url, id, tabsConfig[id].styles);
+					if(tabsConfig[id]['default']) {
+						self.append(tabs[id]);
+						current = id;
+					}
+				}
+				mui('#bar').on('tap', 'a', function(e) {
+					if(current == this.dataset.id) {
+						mui.fire(tabs[current], 'scroll2top');
+						return;
+					}
+					tabs[this.dataset.id].show();
+//					tabs[current].hide();
+					current = this.dataset.id;
+				});
+			});
+		</script>
+
+	</body>
+
+</html>
